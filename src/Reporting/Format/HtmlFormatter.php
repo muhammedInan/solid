@@ -2,10 +2,12 @@
 
 namespace App\Reporting\Format;
 
+use Exception;
 use App\Reporting\Report;
 
-class HtmlFormatter{
-    public function formatToHtml(Report $report){
+class HtmlFormatter implements FormatterInterface{
+
+    public function format(Report $report){
 
         $contents = $report->getContents();
 
@@ -25,4 +27,12 @@ class HtmlFormatter{
         ";
     }
 
+    //principe segregation interface
+    // je n'en n'ai pas besoin car je respecte la regle du fait que les function quon utilise pas on est pas obliger d'utiliser meme si ya interface donc pour contrer sa on a implmenter deserialize interface
+    // public function deserialize(string $str): Report
+    // {
+    //     throw new Exception("il est impossible de deserialiser du html");
+
+    //     return new Report("", "", []);
+    // }
 }
